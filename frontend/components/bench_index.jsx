@@ -1,5 +1,4 @@
 const React = require("react");
-const BenchActions = require("../actions/bench_actions");
 const BenchStore = require("../stores/bench_store");
 const BenchIndexItem = require("./bench_index_item");
 
@@ -10,7 +9,6 @@ const BenchIndex = React.createClass({
   },
   componentDidMount: function(){
     BenchStore.addListener(this.getStateFromStore);
-    BenchActions.fetchAllBenches();
   },
 
   getStateFromStore: function(){

@@ -7,12 +7,14 @@ const Route = reactRouter.Route;
 const hashHistory = reactRouter.hashHistory;
 const IndexRedirect = reactRouter.IndexRedirect;
 
-
+const Search = require("./components/search");
 const BenchIndex = require("./components/bench_index");
 
 const routes = <Router history={hashHistory}>
-  <Route path="/api/benches" component={BenchIndex}>
+  <Route path="/" component={Search}>
+    <Route path="api/benches" component={BenchIndex}>
 
+    </Route>
   </Route>
 </Router>
 
