@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+bench1 = Api::Bench.create!(description: "bench1", lat: 37.7672, lng: -122.499)
+bench2 = Api::Bench.create!(description: "bench2", lat: 37.7353, lng: -122.4904)
