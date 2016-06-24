@@ -2,7 +2,7 @@ const Store = require("flux/utils").Store;
 const AppDispatcher = require("../dispatcher/dispatcher");
 const BenchConstants = require("../constants/bench_constants");
 
-const BenchStore = new Store(AppDispatcher);
+let BenchStore = new Store(AppDispatcher);
 
 let _benches = {};
 
