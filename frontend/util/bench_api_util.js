@@ -1,9 +1,11 @@
 
 
 const BenchApiUtil = {
-  fetchAllBenches: function(callback){
+  fetchAllBenches: function(mybounds, callback){ // put bounds into data section.
+    let params = {bounds: mybounds};
     $.ajax({
-      url: "/api/benches",
+      url: `/api/benches/`,
+      data: params,
       success: function(benches){
         callback(benches);
       }

@@ -11,14 +11,29 @@ const BenchMap = React.createClass({
       zoom: 13
     };
     this.map = new google.maps.Map(mapDOMNode, mapOptions);
+
     BenchStore.addListener(this._onChange);
+
+    this.markers = [];
+
     this.map.addListener("idle", () => {
-      BenchActions.fetchAllBenches();
+      let bounds = this.map.getBounds();
+      let northeast = bounds.getNorthEast();
+      let southwest = bounds.getSouthWest();
+      let mybounds = {"northEast": {"lat": northeast.lat, "lng": northeast.lng},
+                "southWest": {"lat": southwest.lat, "lng": southwest.lng}};
+
+      BenchActions.fetchAllBenches(mybounds);
     })
   },
 
   _onChange: function(){
     let benches = BenchStore.all();
+    this.markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    this.markers = [];
+
     Object.keys(benches).forEach((benchId) => {
       let bench = benches[benchId];
       let myposition = {lat: bench.lat, lng: bench.lng};
@@ -27,7 +42,10 @@ const BenchMap = React.createClass({
         title: bench.description,
         map: this.map
       });
+      this.markers.push(marker);
     });
+
+
   },
 
   render: function(){

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624185535) do
+ActiveRecord::Schema.define(version: 20160627202832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160624185535) do
     t.float    "lng",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "seating"
   end
 
   add_index "benches", ["lat", "lng"], name: "index_benches_on_lat_and_lng", unique: true, using: :btree
