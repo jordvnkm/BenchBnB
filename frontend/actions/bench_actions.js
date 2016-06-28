@@ -12,7 +12,20 @@ const BenchActions = {
       actionType: BenchConstants.RECEIVE_ALL_BENCHES,
       benches: benches
     });
-  }
+  },
+
+  receiveSingleBench: function(bench){
+    AppDispatcher.dispatch({
+      actionType: BenchConstants.RECEIVE_BENCH,
+      bench: bench
+    });
+  },
+
+  createBench: function(bench){
+    BenchApiUtil.createBench(bench, BenchActions.receiveSingleBench);
+  },
+
+
 
 };
 

@@ -2,6 +2,7 @@ const React = require("react");
 const ReactDOM = require("react-dom");
 const BenchStore = require("../stores/bench_store");
 const BenchActions = require("../actions/bench_actions");
+const hashHistory = require("react-router").hashHistory;
 
 const BenchMap = React.createClass({
   componentDidMount: function(){
@@ -24,7 +25,21 @@ const BenchMap = React.createClass({
                 "southWest": {"lat": southwest.lat, "lng": southwest.lng}};
 
       BenchActions.fetchAllBenches(mybounds);
+    });
+
+    this.map.addListener("click", (event) => {
+      let clickPos = event.latLng;
+      let coords = {lat: clickPos.lat(), lng: clickPos.lng()};
+      hashHistory.push({
+        pathname: "api/benches/new",
+        query: coords
+      })
     })
+  },
+
+  componentWillUnmount: function(){
+    this.map = null;
+    this.markers = [];
   },
 
   _onChange: function(){

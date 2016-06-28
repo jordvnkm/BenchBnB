@@ -12,7 +12,16 @@ BenchStore.__onDispatch = function(payload){
     resetBenches(payload.benches);
     BenchStore.__emitChange();
     break;
+  case BenchConstants.RECEIVE_BENCH:
+    addBench(payload.bench);
+    BenchStore.__emitChange();
+    break;
   }
+};
+
+
+const addBench = function(bench){
+  _benches[bench.id] = bench;
 };
 
 BenchStore.all = function() {

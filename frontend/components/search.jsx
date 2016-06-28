@@ -9,6 +9,7 @@ const Search = React.createClass({
       <div>
         <BenchMap />
         <BenchIndex />
+        {this.props.chidlren}
       </div>
     );
   }
